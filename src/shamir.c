@@ -17,7 +17,7 @@
  *
  * Routines for splitting and joining of a hex key
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *
  * $Id: shamir.c,v 1.7 2010/03/31 13:00:31 hahkala Exp $
@@ -32,11 +32,11 @@
 */
 
 // =============== SPLITKEY ===================================================================
-// Routine allocates the char** with split keys to be returned. Deallocation has to be done 
-// later by the user of the routine. 
+// Routine allocates the char** with split keys to be returned. Deallocation has to be done
+// later by the user of the routine.
 
 /** Routine for splitting a hex key using SSSS*/
-unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
+unsigned char ** ssss_split_key(unsigned char * keyf,
   unsigned int nShares, unsigned int nNeeded) {
   unsigned int i,j,nBytes,iByte;
   unsigned char **keysf;
@@ -47,7 +47,7 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
   if (nShares <= 0) {
     SSSS_I_log4c_ERROR("nShares (%i) must be greater than 0",nShares);
     return NULL;
-  }  
+  }
 
   // Test if nNeeded provided
   if (nNeeded <= 0) {
@@ -86,7 +86,7 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
       free(keysf);
       return NULL;
     }
-  } 
+  }
 
   // Initialize splitKeys
   for(i=0;i<nShares;i++){
@@ -112,7 +112,7 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
       free(keysf);
       return NULL;
     }
-    
+
     // Have to insert the secret for x=0, must convert hex string to short
     // Pointer to end of string
     for(i=0;i<4;i++) bit[i]='0';
@@ -127,25 +127,25 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
 
     // Setting key as polynom for x=0
     polynom[nNeeded-1]=s_key;
-    
+
     if(SSSS_I_log4c_check_loglevel(SSSS_I_LOG4C_DEBUG)){
-      printf("\nRandom polynom:\n");    
+      printf("\nRandom polynom:\n");
       for(i=0;i<nNeeded;i++)
         printf("%i (x^%i) ",polynom[i],nNeeded-1-i);
-      printf("\nHex: ");    
+      printf("\nHex: ");
       for(i=0;i<nNeeded;i++)
         printf("x^%i=%x ",nNeeded-1-i,polynom[i]);
     }
-    
+
     //--------------------------------------------------
     //Got a random polynom, creating nShares keys.
     //Sorting polynoms from highest to lowest order
-    //-------------------------------------------------- 
-    
+    //--------------------------------------------------
+
     unsigned long xx; // x counter
     unsigned long xtemp,xtt,xt; // Summation variable
-    
-    for(xx=1;xx<=nShares;xx++){  
+
+    for(xx=1;xx<=nShares;xx++){
       xtemp=0;
       SSSS_I_log4c_DEBUG("\nx=%li ",xx );
       for(i=0;i<nNeeded;i++){
@@ -160,11 +160,11 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
         SSSS_I_log4c_DEBUG("i=%i (%i) => %li & %li ",i,(nNeeded-1-i),xt,xtt);
       }
       SSSS_I_log4c_DEBUG("y=%li",xtemp);
-     
+
       for(i=0;i<4;i++) bit[i]='0';
       bit[4]='\0';
       sprintf(bit,"%4lx",xtemp);
-      
+
       for(i=0;i<4;i++){
         keysf[xx-1][i+(((iByte-1))*4)]=bit[i];
         if(keysf[xx-1][i+(((iByte-1))*4)]==' ') keysf[xx-1][i+(((iByte-1))*4)]='0';
@@ -174,14 +174,14 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * keyf,
         keysf[xx-1][nBytes*4]='\0';
       }
     }
-    
+
   }
   return keysf;
 }
 
 // ============          joinKeySSS   =============================================
 /** Routine for joining a hex key using SSSS*/
-unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
+unsigned char * ssss_join_keys(unsigned char **keysf,
   unsigned int nShares){
   unsigned char * jKey;
   unsigned long x[nShares];
@@ -189,12 +189,12 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
   unsigned int i,j;
   long num=0;
   long denom=0;
-  unsigned long isecret=0; 
+  unsigned long isecret=0;
   long inarray[nShares];
   unsigned long c[nShares];
   unsigned long ikeys[nShares];
   long  nn;
-  unsigned int iByte,nBytes; 
+  unsigned int iByte,nBytes;
   unsigned char bit[5];
   unsigned int keyLength;
   unsigned int start;
@@ -203,7 +203,7 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
   if (nShares <= 0) {
     SSSS_I_log4c_ERROR("nShares (%i) must be greater than 0",nShares);
     return NULL;
-  }  
+  }
   // Set keyLength for first well defined string
   start=0;
   for (i=0;keysf[i]==NULL;i++)
@@ -213,14 +213,14 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
   // Check length of split-keys
   for (i=start;i<nShares;i++){
     if(keysf[i]!=NULL){
-      
+
       if(keyLength!=strlen(keysf[i])){
         SSSS_I_log4c_ERROR("All the split keys have to have the same length");
         return NULL;
-      }    
+      }
     }
   }
-  
+
   // Find active x-points
   nn=0;
   for (i=0;i<nShares;i++){
@@ -245,7 +245,7 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
     SSSS_I_log4c_ERROR("Error allocate memory");
     return NULL;
   }
-  
+
 
   for(i=0;i<(nBytes*4);i++) *(jKey+i)='0';
   *(jKey+(nBytes*4))='\0';
@@ -261,15 +261,15 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
           bit[4]='\0';
           for(k=0;k<4;k++)
             printf("%c",bit[k]);
-          printf(" (%li) ",strtol(bit,NULL,16)); 
+          printf(" (%li) ",strtol(bit,NULL,16));
         }
       }
     }
   }
-  
+
   // Loop over 4 chars
   for(iByte=1;iByte<=nBytes;iByte++){
-     
+
     // Convert hex keys to integers
     for(i=0;i<nShares;i++){
       if(inarray[i]!=0){
@@ -290,7 +290,7 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
         ikeys[i]=0;
       }
     }
-    
+
     // Get key back from split keys
     for (i=0;i<nShares;i++){
       ii=i+1;
@@ -324,7 +324,7 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
         c[i]=0;
       }
     }
-    
+
     // Defined c and have nNeeded ikeys. Make summation
     unsigned long xt;
     isecret=0;
@@ -336,14 +336,14 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
         SSSS_I_log4c_DEBUG("c[%li] = %lu x(%li)=%lu ==> %lu %lu %lu %li",
           i,c[i],i,ikeys[i],(unsigned long) c[i]*ikeys[i],
           (unsigned long)(c[i]*ikeys[i])/prime,xt,isecret);
-      }    
+      }
     }
-    
-    
+
+
     isecret=isecret%prime;
     SSSS_I_log4c_DEBUG("Isecret: %li",isecret);
-    
-    
+
+
     for(i=0;i<4;i++) bit[i]='0';
     bit[4]='\0';
     sprintf(bit,"%4lx",isecret);
@@ -366,13 +366,13 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keysf,
       printf(" (%li) ",strtol(bit,NULL,16));
     }
   }
- 
+
   return jKey;
 }
 
-// ============          glite_security_ssss_split_passwd   =============================================
+// ============          ssss_split_passwd   =============================================
 /** Routine for splitting a ascii key using SSSS. Returns a char ** with split hex strings */
-unsigned char ** glite_security_ssss_split_passwd(unsigned char * keyf,
+unsigned char ** ssss_split_passwd(unsigned char * keyf,
 						  unsigned int nShares, unsigned int nNeeded) {
   unsigned char *hexKey;
   unsigned char **keys;
@@ -380,20 +380,20 @@ unsigned char ** glite_security_ssss_split_passwd(unsigned char * keyf,
   // Convert ascii to hex
   hexKey=ascii2hex(keyf);
   // Submit hex key
-  keys=glite_security_ssss_split_key(hexKey,nShares,nNeeded);
+  keys=ssss_split_key(hexKey,nShares,nNeeded);
 
   return keys;
 }
 
-// ============          glite_security_ssss_join_passwd   =============================================
+// ============          ssss_join_passwd   =============================================
 /** Routine for joining an ascii key using SSSS*/
-unsigned char * glite_security_ssss_join_passwd(unsigned char **keysf,
+unsigned char * ssss_join_passwd(unsigned char **keysf,
 						unsigned int nShares){
   unsigned char *hexKey;
   unsigned char *asciiKey;
-  
+
   // Find joined hex key
-  hexKey = glite_security_ssss_join_keys(keysf,nShares);
+  hexKey = ssss_join_keys(keysf,nShares);
   if(hexKey!=NULL){
     // Convert hex to ascii
     asciiKey=hex2ascii(hexKey);

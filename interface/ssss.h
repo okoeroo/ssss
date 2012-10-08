@@ -1,4 +1,4 @@
-/** 
+/**
  * Copyright (c) Members of the EGEE Collaboration. 2006-2010.
  * See http://www.eu-egee.org/partners/ for details on the copyright
  * holders.
@@ -32,8 +32,8 @@
  * interpolation of degree \f$t-1\f$ with modular arithmetic instead of real arithmetic.
  * The set of integers modulo a prime number 'prime' forms a field in which
  * interpolation is possible.
- * We choose to break the key in random substrings of 4 characters handled separately 
- * (hex value of 0 - \f$2^{16}\f$). 
+ * We choose to break the key in random substrings of 4 characters handled separately
+ * (hex value of 0 - \f$2^{16}\f$).
  * It is also assumed that the hex key is based on positive numbers.
  * The prime number has to be bigger than the largest number than can
  * be represented (i.e. 0xff) and the number of shares n.
@@ -48,8 +48,8 @@
  *  Documentation of SSSS used for splitting and joining of a key
  */
 
-#ifndef GLITE_SECURITY_SSSS_H
-#define GLITE_SECURITY_SSSS_H
+#ifndef SSSS_H
+#define SSSS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -68,7 +68,7 @@ extern "C" {
  * The caller is responsible for freeing the allocated strings in
  * case of success.
  */
-unsigned char ** glite_security_ssss_split_key(unsigned char * key, 
+unsigned char ** ssss_split_key(unsigned char * key,
     unsigned int nShares, unsigned int nNeeded);
 
 /**
@@ -77,15 +77,15 @@ unsigned char ** glite_security_ssss_split_key(unsigned char * key,
  * @param keys  Array of key pieces in hexadecimal string format.
  * @param nShares   The number of shares.
  *
- * @return The joined key in hexadecimal string format, if there 
+ * @return The joined key in hexadecimal string format, if there
  * was no error. If there was an error, NULL is returned.
  *
  * The caller is responsible for freeing the allocated string in
- * case of success. The order of the submitted keys (**keys) does matter. 
- * If a key is missing, e.g. due to a server being down, this key 
- * should be set to NULL for the corresponding index in **keys. 
+ * case of success. The order of the submitted keys (**keys) does matter.
+ * If a key is missing, e.g. due to a server being down, this key
+ * should be set to NULL for the corresponding index in **keys.
  */
-unsigned char * glite_security_ssss_join_keys(unsigned char **keys, 
+unsigned char * ssss_join_keys(unsigned char **keys,
     unsigned int nShares);
 
 /**
@@ -95,14 +95,14 @@ unsigned char * glite_security_ssss_join_keys(unsigned char **keys,
  * @param nShares   The desired number of shares.
  * @param nNeeded   The number of keys required to recover.
  *
- * @return The array of split random password parts in hexadecimal 
- * string format, if there was no error. If there was an error, NULL 
+ * @return The array of split random password parts in hexadecimal
+ * string format, if there was no error. If there was an error, NULL
  * is returned.
  *
  * The caller is responsible for freeing the allocated strings in
  * case of success.
  */
-unsigned char ** glite_security_ssss_split_passwd(unsigned char * key, 
+unsigned char ** ssss_split_passwd(unsigned char * key,
     unsigned int nShares, unsigned int nNeeded);
 
 /**
@@ -111,15 +111,15 @@ unsigned char ** glite_security_ssss_split_passwd(unsigned char * key,
  * @param keys  Array of key pieces in hexadecimal string format.
  * @param nShares   The number of shares.
  *
- * @return The joined key in hexadecimal string format, if there 
+ * @return The joined key in hexadecimal string format, if there
  * was no error. If there was an error, NULL is returned.
  *
  * The caller is responsible for freeing the allocated string in
- * case of success. The order of the submitted password parts (**keys) 
- * does matter. If a key is missing, e.g. due to a server being down, this part 
- * should be set to NULL for the corresponding index in **keys. 
+ * case of success. The order of the submitted password parts (**keys)
+ * does matter. If a key is missing, e.g. due to a server being down, this part
+ * should be set to NULL for the corresponding index in **keys.
  */
-unsigned char * glite_security_ssss_join_passwd(unsigned char **keys, 
+unsigned char * ssss_join_passwd(unsigned char **keys,
     unsigned int nShares);
 
 #ifdef __cplusplus
@@ -127,4 +127,4 @@ unsigned char * glite_security_ssss_join_passwd(unsigned char **keys,
 #endif
 
 
-#endif /* GLITE_SECURITY_SSSS_H */
+#endif /* SSSS_H */

@@ -18,7 +18,7 @@
  * Testprogram for Shamir secret sharing scheme: key generation
  * Usage:  ./genKey keyLength
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *      Akos Frohner <Akos.Frohner@cern.ch>
  *
@@ -31,7 +31,7 @@
 
 #include "ssssI.h"
 
-#define PROGNAME "glite-ssss-generate-key"
+#define PROGNAME "ssss-generate-key"
 
 /** Generate a random hex key in chunks of 4 chars*/
 unsigned char * generateKey(int len){

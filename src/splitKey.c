@@ -33,7 +33,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define PROGNAME "glite-ssss-split-key"
+#define PROGNAME "ssss-split-key"
 
 static void print_usage_and_die (int exit_code) {
   printf("\n");
@@ -85,7 +85,7 @@ int main(int argc, char** argv){
   if (verbose) printf("\nKey to split (%d of %d): %s", nNeeded, nShares, key);
 
   // Split keys
-  keys = glite_security_ssss_split_key(key,nShares,nNeeded);
+  keys = ssss_split_key(key,nShares,nNeeded);
   if(keys==NULL){
     printf("\n\nError in splitting key. Check logfile");
     return 1;

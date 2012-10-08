@@ -28,20 +28,20 @@
 # exit after the first problem
 set -e
 
-#KEY32=$(./glite-ssss-generate-key 32)
+#KEY32=$(./ssss-generate-key 32)
 # Need a not hex test. overriding:
 KEY32="abcdefghijklmnopqrstuvwxyz#+&/()"
 ./test-shamir-ascii 5 2  $KEY32
 
-KEY8=$(./glite-ssss-generate-key 8)
+KEY8=$(./ssss-generate-key 8)
 ./test-shamir-ascii 7 3 $KEY8
 
 echo ""
-echo "Testing glite-ssss-split-passwd and glite-ssss-join-passwd"
-cmd="./glite-ssss-split-passwd -q 5 2 $KEY32"
+echo "Testing ssss-split-passwd and ssss-join-passwd"
+cmd="./ssss-split-passwd -q 5 2 $KEY32"
 echo $cmd
 SPLIT32=$($cmd)
-cmd="./glite-ssss-join-passwd -q $SPLIT32"
+cmd="./ssss-join-passwd -q $SPLIT32"
 echo $cmd
 JOIN32=$($cmd)
 echo "Joined shares: $JOIN32"

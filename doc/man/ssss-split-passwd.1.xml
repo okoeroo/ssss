@@ -6,7 +6,7 @@
 <!ENTITY common-ssss-env SYSTEM "common-ssss-env.xml">
 ]>
 
-<refentry id="glite-ssss-split-key.1" revision="$Revision: 1.2 $">
+<refentry id="ssss-split-passwd.1" revision="$Revision: 1.1 $">
 
 <refentryinfo>
     <!-- These information are shown on the manpage -->
@@ -30,26 +30,26 @@
 </refentryinfo>
 
 <refmeta>
-    <refentrytitle>glite-ssss-split-key</refentrytitle>
+    <refentrytitle>ssss-split-passwd</refentrytitle>
     <manvolnum>1</manvolnum>
 </refmeta>
 
 <refnamediv>
-    <refname>glite-ssss-split-key</refname>
+    <refname>ssss-split-passwd</refname>
     <refpurpose>
-        Splits a key into shares to be distributed among untrusted parties.
+        Splits a password into shares to be distributed among untrusted parties.
     </refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
     <cmdsynopsis>
-	<command>glite-ssss-split-key</command>
+	<command>ssss-split-passwd</command>
 
 &common-ssss-args;
 
         <arg choice="plain"><option><replaceable>SHARES</replaceable></option></arg>
         <arg choice="plain"><option><replaceable>NEEDED</replaceable></option></arg>
-        <arg choice="plain"><option><replaceable>KEY</replaceable></option></arg>
+        <arg choice="plain"><option><replaceable>PASSWORD</replaceable></option></arg>
 
     </cmdsynopsis>
 </refsynopsisdiv>
@@ -57,22 +57,22 @@
 <refsect1>
     <title>DESCRIPTION</title>
     <para>
-	<command>glite-ssss-split-key</command> is a command-line tool to
-        split a key into a number of shares using Shamir's Secret Sharing
+	<command>ssss-split-passwd</command> is a command-line tool to
+        split an ascii password into a number of shares using Shamir's Secret Sharing
         Scheme (see "How to Share a Secret", by Adi Shamir, Communications of
         the ACM, November, 1979, Volume 22, Number 11, page 612.).
     </para>
     <para>
-        The key is split into <emphasis>SHARES</emphasis> number of parts
+        The ascii password is split into <emphasis>SHARES</emphasis> number of random hex parts
         of which <emphasis>NEEDED</emphasis> number of parts are needed to
-        re-construct the key. The re-construction of the key is theoretically
+        re-construct the password. The re-construction of the password is theoretically
         not possible of parts fewer than <emphasis>NEEDED</emphasis>, thus
-        it enables the safe storage of key parts on not fully trusted 
-        key storages.
+        it enables the safe storage of password parts on not fully trusted 
+        password storages.
     </para>
     <para>
         The scheme also provides some reliability, since not all parts of 
-        the split key are needed to re-construct the original key.
+        the split password are needed to re-construct the original password.
     </para>
 </refsect1>
 
@@ -85,24 +85,22 @@
         <varlistentry>
             <term><option><replaceable>SHARES</replaceable></option></term>
             <listitem><para>
-                The number of parts to split the key into. 
+                The number of parts to split the password into. 
             </para></listitem>
         </varlistentry>
 
         <varlistentry>
             <term><option><replaceable>NEEDED</replaceable></option></term>
             <listitem><para>
-                The number of split key parts needed to re-construct the key.
+                The number of split password parts needed to re-construct the password.
                 Shall be less than <emphasis>SHARES</emphasis>.
             </para></listitem>
         </varlistentry>
 
         <varlistentry>
-            <term><option><replaceable>KEY</replaceable></option></term>
+            <term><option><replaceable>PASSWORD</replaceable></option></term>
             <listitem><para>
-                The key to split as hexadecimal number. The number of 
-                hexadecimal numbers must be greater than 4 and must 
-                be dividable by 4 (for example 8, 12, 16 are good key lengths).
+                The password to split as an ascii string.
             </para></listitem>
         </varlistentry>
     </variablelist>
@@ -115,7 +113,7 @@
 
     <para>
 	<citerefentry>
-	    <refentrytitle>glite-ssss-join-key</refentrytitle>
+	    <refentrytitle>ssss-join-passwd</refentrytitle>
 	    <manvolnum>1</manvolnum>
 	</citerefentry>
     </para>
@@ -125,15 +123,17 @@
     <title>EXAMPLES</title>
     <variablelist>
 	<varlistentry>
-	    <term><userinput>glite-ssss-split-key 5 2 1234567812345678</userinput></term>
+	    <term><userinput>ssss-split-passwd 5 2 &#34;#%&#38;lkXYt&#34;</userinput></term>
 	    <para>
-            Splits the key into 5 parts, of which 2 are needed to get it back.
+            Splits the password into 5 parts, of which 2 are needed to get it back. The &#34;  
+            marks or similar are needed in a shell to compress shell variables.
 	    </para>
 	</varlistentry>
 	<varlistentry>
-	    <term><userinput>glite-ssss-split-key 7 3 12345678</userinput></term>
+	    <term><userinput>ssss-split-passwd 7 3 &#34;?&#38;\&#62;+asdffgew&#34;</userinput></term>
 	    <para>
-            Splits the key into 7 parts, of which 3 are needed to get it back.
+            Splits the password into 7 parts, of which 3 are needed to get it back. The &#34;  
+            marks or similar are needed in a shell to compress shell variables.
 	    </para>
 	</varlistentry>
     </variablelist>

@@ -17,7 +17,7 @@
  *
  * Functions and tests for the SSSS
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *
  * $Id: shamir-funcs.c,v 1.4 2010/03/31 13:00:31 hahkala Exp $
@@ -34,15 +34,15 @@ int inverseModulo(long n, long *in){
   // Rearranging this result, we see that a*prime=1-b*n, or b*n=1(mod prime).
   // This solves the problem of finding the modular inverse of n, as this shows
   // that n(-1)=b(mod prime).
-  
+
   // More information about Basics of Computational Number Theory
   // can be found (at the date of Nov. 11, 2005)
   // http://www.math.oumbc.edu/~campbell/NumbThy/Class/BasicNumbThy.html
-  
+
   int i;
   long a[3] = { 1L, 0L, prime };
   long b[3] = { 0L, 1L, n };
-  
+
   while (a[2] != 0) {
     if (a[2] < b[2])
       for (i=0; i<3; ++i) {
@@ -63,10 +63,10 @@ int inverseModulo(long n, long *in){
     return 0;
   }
   long inverse = b[1];
-  
+
   while (inverse < 0)
     inverse += prime;
-  
+
   *in = inverse;
   return 1;
 }
@@ -119,7 +119,7 @@ unsigned char *ascii2hex(unsigned char *keyf){
   hexlen=len*2;
   // If not dividable by 4, add 2 extra chars to make sure of a hextstring with chunks of 4 chars
   if(hexlen%4!=0) hexlen=hexlen+2;
- 
+
   // Allocate memory for hexkey
   hexkey = malloc((hexlen+4)*sizeof(unsigned char *));
 
@@ -132,7 +132,7 @@ unsigned char *ascii2hex(unsigned char *keyf){
   // Loop chars
   for (i=0;i<(hexlen/2);i++){
     if(i<len){
-      ascii = (int) keyf[i];      
+      ascii = (int) keyf[i];
     }else{
       ascii = 0;
     }
@@ -140,7 +140,7 @@ unsigned char *ascii2hex(unsigned char *keyf){
     for(j=0;j<2;j++) hexbit[j]='0';
     hexbit[2]='\0';
     sprintf(hexbit,"%2x",ascii);
-    
+
     // Insert string from char no 4
     for(j=0;j<2;j++)*(hexkey+4+(i*2)+j)=hexbit[j];
   }
@@ -160,7 +160,7 @@ unsigned char *hex2ascii(unsigned char *keyf){
   char bit[5];
   int ascii,len,i,j;
   char asciichar;
-  
+
   // Find the length of the ascii string
   for(i=0;i<4;i++) bit[i]=*(keyf+i);
   bit[4]='\0';
@@ -168,7 +168,7 @@ unsigned char *hex2ascii(unsigned char *keyf){
 
   // Allocate memory for asciikey
   asciikey = malloc(len*sizeof(unsigned char *));
-  
+
   // Loop chars
   for (i=0;i<len;i++){
     // Use hexvalues 4 to 4+(len*2) in chunks of 2
@@ -176,12 +176,12 @@ unsigned char *hex2ascii(unsigned char *keyf){
     hexbit[2]='\0';
     ascii = strtol(hexbit,NULL,16);
     asciichar = (char) ascii;
-    
+
     // Insert char into asciikey
     *(asciikey+i)=asciichar;
   }
   *(asciikey+len)='\0';
-  
+
   return asciikey;
 }
 // vim:set ts=2 sw=2 et:

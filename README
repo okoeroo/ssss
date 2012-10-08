@@ -25,13 +25,13 @@ cvs -d :pserver:anonymous@glite.cvs.cern.ch:/cvs/glite co -d ssss org.glite.secu
 
 
 Products / tools:
-- glite-ssss-generate-key
-- glite-ssss-join-key
-- glite-ssss-join-passwd
-- glite-ssss-split-key
-- glite-ssss-split-passwd
+- ssss-generate-key
+- ssss-join-key
+- ssss-join-passwd
+- ssss-split-key
+- ssss-split-passwd
 - ssss.h
-- libglite_security_ssss.dylib
+- libssss.dylib
 
 
 Motivation:

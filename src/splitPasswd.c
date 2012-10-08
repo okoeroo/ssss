@@ -33,7 +33,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define PROGNAME "glite-ssss-split-passwd"
+#define PROGNAME "ssss-split-passwd"
 
 static void print_usage_and_die (int exit_code) {
   printf("\n");
@@ -81,7 +81,7 @@ int main(int argc, char** argv){
   if (verbose) printf("\nPassword to split (%d of %d): %s", nNeeded, nShares, key);
 
   // Split keys
-  keys = glite_security_ssss_split_passwd(key,nShares,nNeeded);
+  keys = ssss_split_passwd(key,nShares,nNeeded);
   if(keys==NULL){
     printf("\n\nError in splitting password. Check logfile");
     return 1;

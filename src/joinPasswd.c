@@ -34,7 +34,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#define PROGNAME "glite-ssss-join-passwd"
+#define PROGNAME "ssss-join-passwd"
 
 static void print_usage_and_die (int exit_code) {
     printf("\n");
@@ -90,7 +90,7 @@ int main(int argc, char** argv){
   }
 
   // Join keys
-  jKey = glite_security_ssss_join_passwd(keys, nShares);
+  jKey = ssss_join_passwd(keys, nShares);
   if(jKey==NULL){
     printf("\n\nError in joining pasword. Check logfile");
     return 2;

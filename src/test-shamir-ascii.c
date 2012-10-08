@@ -58,7 +58,7 @@ int main(int argc, char** argv){
   printf("\nPassword to split (%d of %d): %s", nNeeded, nShares, key);
 
   // Split keys
-  keys = glite_security_ssss_split_passwd(key, nShares, nNeeded);
+  keys = ssss_split_passwd(key, nShares, nNeeded);
   if(keys==NULL){
     printf("\n\nError in splitting password. Check logfile");
     return 1;
@@ -70,7 +70,7 @@ int main(int argc, char** argv){
   }
 
   // Join passwords
-  jKey = glite_security_ssss_join_passwd(keys, nShares);
+  jKey = ssss_join_passwd(keys, nShares);
   if(jKey==NULL){
     printf("\n\nError in joining password. Check logfile");
     return 2;

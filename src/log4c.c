@@ -53,19 +53,19 @@ PUBLIC void SSSS_I_log4c_init(void) {
 
     envar = getenv(SSSSEnv_LOG_LEVEL);
     if (envar != NULL) {
-        if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_DEBUG], 
+        if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_DEBUG],
                    strlen(SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_DEBUG])) == 0) {
             SSSS_I_log4c_current_loglevel = SSSS_I_LOG4C_DEBUG;
         }
-        else if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_INFO], 
+        else if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_INFO],
                         strlen(SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_INFO])) == 0) {
             SSSS_I_log4c_current_loglevel = SSSS_I_LOG4C_INFO;
         }
-        else if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_WARN], 
+        else if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_WARN],
                         strlen(SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_WARN])) == 0) {
             SSSS_I_log4c_current_loglevel = SSSS_I_LOG4C_WARN;
         }
-        else if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_ERROR], 
+        else if(strncmp(envar, SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_ERROR],
                         strlen(SSSS_I_log4c_loglevel_names[SSSS_I_LOG4C_ERROR])) == 0) {
             SSSS_I_log4c_current_loglevel = SSSS_I_LOG4C_ERROR;
         }
@@ -96,16 +96,16 @@ PUBLIC void SSSS_I_log4c_done(void) {
 #define SSSS_I_LOG4C_TIME_LENGTH 25
 static char SSSS_I_log4c_time[SSSS_I_LOG4C_TIME_LENGTH];
 
-PUBLIC int SSSS_I_log4c_check_loglevel(SSSS_I_log4c_LogLevel loglevel) 
+PUBLIC int SSSS_I_log4c_check_loglevel(SSSS_I_log4c_LogLevel loglevel)
 {
     if (loglevel > SSSS_I_LOG4C_ERROR) return 0;
     if (SSSS_I_log4c_current_loglevel > loglevel) return 0;
     return 1;
 }
 
-PUBLIC void SSSS_I_log4c_printf(SSSS_I_log4c_LogLevel loglevel, 
+PUBLIC void SSSS_I_log4c_printf(SSSS_I_log4c_LogLevel loglevel,
     const char *file, const char *function, const int line,
-    const char *format, ...) 
+    const char *format, ...)
 {
     if (loglevel > SSSS_I_LOG4C_ERROR) return;
     if (SSSS_I_log4c_current_loglevel > loglevel) return;
@@ -117,7 +117,7 @@ PUBLIC void SSSS_I_log4c_printf(SSSS_I_log4c_LogLevel loglevel,
     const char *basename;
 
     if (NULL == logfile) logfile = stderr;
-    
+
     logt = time(NULL);
     logtm = localtime(&logt);
     if (logtm == NULL) {
@@ -126,7 +126,7 @@ PUBLIC void SSSS_I_log4c_printf(SSSS_I_log4c_LogLevel loglevel,
     else if(strftime(SSSS_I_log4c_time, sizeof(SSSS_I_log4c_time), SSSS_I_LOG4C_TIME_FORMAT, logtm) == 0) {
         SSSS_I_log4c_time[0] = '\0';
     }
-    
+
     basename = rindex(file, '/');
     if (NULL != basename) {
         basename++; // skip to after the slash

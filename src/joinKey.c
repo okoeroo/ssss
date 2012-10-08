@@ -36,7 +36,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#define PROGNAME "glite-ssss-join-key"
+#define PROGNAME "ssss-join-key"
 
 static void print_usage_and_die (int exit_code) {
     printf("\n");
@@ -96,7 +96,7 @@ int main(int argc, char** argv){
   }
 
   // Join keys
-  jKey = glite_security_ssss_join_keys(keys, nShares);
+  jKey = ssss_join_keys(keys, nShares);
   if(jKey==NULL){
     printf("\n\nError in joining key. Check logfile");
     return 2;

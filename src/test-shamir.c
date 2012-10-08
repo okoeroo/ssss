@@ -59,7 +59,7 @@ int main(int argc, char** argv){
   printf("\nKey to split (%d of %d): %s", nNeeded, nShares, key);
 
   // Split keys
-  keys = glite_security_ssss_split_key(key, nShares, nNeeded);
+  keys = ssss_split_key(key, nShares, nNeeded);
   if(keys==NULL){
     printf("\n\nError in splitting key. Check logfile");
     return 1;
@@ -71,7 +71,7 @@ int main(int argc, char** argv){
   }
 
   // Join keys
-  jKey = glite_security_ssss_join_keys(keys, nShares);
+  jKey = ssss_join_keys(keys, nShares);
   if(jKey==NULL){
     printf("\n\nError in joining key. Check logfile");
     return 2;

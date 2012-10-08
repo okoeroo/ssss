@@ -16,45 +16,45 @@ LDFLAGS = -L/opt/local/lib
 
 MAINTAINERCLEAN = Makefile.in
 
-lib_LTLIBRARIES = libglite_security_ssss.la 
+lib_LTLIBRARIES = libssss.la 
 
-libglite_security_ssss_la_SOURCES = shamir.c shamir-funcs.c log4c.c
+libssss_la_SOURCES = shamir.c shamir-funcs.c log4c.c
 
-libglite_security_ssss_la_LIBADD = \
+libssss_la_LIBADD = \
 	-L/opt/local/lib -lm -lcrypto
 
 
 bin_PROGRAMS = \
-	glite-ssss-split-key \
-	glite-ssss-join-key \
-        glite-ssss-split-passwd \
-        glite-ssss-join-passwd
+        ssss-split-key \
+        ssss-join-key \
+        ssss-split-passwd \
+        ssss-join-passwd
 
 noinst_PROGRAMS = \
-	test-shamir \
+        test-shamir \
         test-shamir-ascii \
-	glite-ssss-generate-key
+        ssss-generate-key
 
-glite_ssss_split_key_SOURCES = splitKey.c
-glite_ssss_split_key_LDADD = libglite_security_ssss.la
+ssss_split_key_SOURCES = splitKey.c
+ssss_split_key_LDADD = libssss.la
 
-glite_ssss_split_passwd_SOURCES = splitPasswd.c
-glite_ssss_split_passwd_LDADD = libglite_security_ssss.la
+ssss_split_passwd_SOURCES = splitPasswd.c
+ssss_split_passwd_LDADD = libssss.la
 
-glite_ssss_join_key_SOURCES = joinKey.c
-glite_ssss_join_key_LDADD = libglite_security_ssss.la
+ssss_join_key_SOURCES = joinKey.c
+ssss_join_key_LDADD = libssss.la
 
-glite_ssss_join_passwd_SOURCES = joinPasswd.c
-glite_ssss_join_passwd_LDADD = libglite_security_ssss.la
+ssss_join_passwd_SOURCES = joinPasswd.c
+ssss_join_passwd_LDADD = libssss.la
 
-glite_ssss_generate_key_SOURCES = genKey.c
-glite_ssss_generate_key_LDADD = libglite_security_ssss.la
+ssss_generate_key_SOURCES = genKey.c
+ssss_generate_key_LDADD = libssss.la
 
 test_shamir_SOURCES = test-shamir.c
-test_shamir_LDADD = libglite_security_ssss.la
+test_shamir_LDADD = libssss.la
 
 test_shamir_ascii_SOURCES = test-shamir-ascii.c
-test_shamir_ascii_LDADD = libglite_security_ssss.la
+test_shamir_ascii_LDADD = libssss.la
 
 noinst_SCRIPTS = \
           test-shamir.sh \

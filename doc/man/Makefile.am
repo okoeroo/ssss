@@ -1,8 +1,8 @@
 man1_MANS = \
-	glite-ssss-split-key.1 \
-	glite-ssss-join-key.1 \
-        glite-ssss-split-passwd.1 \
-        glite-ssss-join-passwd.1
+        ssss-split-key.1 \
+        ssss-join-key.1 \
+        ssss-split-passwd.1 \
+        ssss-join-passwd.1
 
 COMMON_XMLFILES = common-ssss-args.xml common-ssss-arg-desc.xml common-ssss-env.xml
 

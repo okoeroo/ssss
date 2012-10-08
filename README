@@ -9,24 +9,48 @@
 
 ====================================================
 
-Maintainer: Oscar Koeroo <okoeroo@gmail.com>
 
+That's nice, but what is it?
+----------------------------
 This is a fork of the glite-security-ssss code at tag (version) 1.0.1
+ -> http://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
+
+
+Maintainer:
+Oscar Koeroo <okoeroo@gmail.com>
+
 
 Original repository:
 cvs -d :pserver:anonymous@glite.cvs.cern.ch:/cvs/glite co -d ssss org.glite.security.ssss
 
 
+Products / tools:
+- glite-ssss-generate-key
+- glite-ssss-join-key
+- glite-ssss-join-passwd
+- glite-ssss-split-key
+- glite-ssss-split-passwd
+- libglite_security_ssss.dylib
+
+
 Motivation:
-I've talked about this code many times in several fora since I helped the original developer started on the first implementation. I'd like to help people
+I've talked about this code many times in several fora since I helped the
+original developer started on the first implementation. I'd like to help people
 make easy use of Shamir's Secret Sharing algorithm by porting it, cleaning it
 up and push it to several repos.
 
 
-More info: http://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
+Current state:
+- Messy code and error messages (signed errors)
+- Man pages don't build, could do without XSLT.
+- Apidoc doesn't apidoc the API.
+- The gLite-isms need to go. I'll add an explicitly NOTES file to explain the
+  origin.
 
 
 Dependencies:
 OpenSSL
 xsltproc (for the man pages)
 Doxygen (for the apidoc)
+
+

@@ -1,3 +1,6 @@
+####
+#   This file is edited to remove the gLite specific build requirements by Oscar Koeroo
+####
 #
 #  Copyright (c) Members of the EGEE Collaboration. 2005.
 #  See http://eu-egee.org/partners/ for details on the copyright holders.
@@ -9,21 +12,17 @@
 
 
 CPPFLAGS = -I$(top_srcdir)/interface $(GLITE_CFLAGS)
-LDFLAGS = -L$(GLITE_LOCATION)/lib 
+LDFLAGS = -L/opt/local/lib
 
 MAINTAINERCLEAN = Makefile.in
-
-AM_CPPFLAGS = $(GLOBUS_THR_CFLAGS) 
 
 lib_LTLIBRARIES = libglite_security_ssss.la 
 
 libglite_security_ssss_la_SOURCES = shamir.c shamir-funcs.c log4c.c
 
 libglite_security_ssss_la_LIBADD = \
-	-L$(GLITE_LOCATION)/lib -lm -lcrypto
+	-L/opt/local/lib -lm -lcrypto
 
-libglite_security_ssss_la_LDFLAGS = \
-	-version-info $(INTERFACE_LIBTOOL_CURRENT):$(INTERFACE_LIBTOOL_REVISION):$(INTERFACE_LIBTOOL_AGE)
 
 bin_PROGRAMS = \
 	glite-ssss-split-key \

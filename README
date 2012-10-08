@@ -30,6 +30,7 @@ Products / tools:
 - glite-ssss-join-passwd
 - glite-ssss-split-key
 - glite-ssss-split-passwd
+- ssss.h
 - libglite_security_ssss.dylib
 
 
@@ -46,6 +47,10 @@ Current state:
 - Apidoc doesn't apidoc the API.
 - The gLite-isms need to go. I'll add an explicitly NOTES file to explain the
   origin.
+
+
+Build guide:
+sh bootstrap && ./configure && make && make install
 
 
 Dependencies:

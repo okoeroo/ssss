@@ -1,0 +1,21 @@
+<refsect1>
+    <title>ENVIRONMENT VARIABLES</title>
+
+    <variablelist>
+        <varlistentry>
+            <term><option><replaceable>GLITE_SSSS_LOG_LEVEL</replaceable></option></term>
+            <listitem><para>
+                Specifies the level of the log messages printed:
+                DEBUG, INFO, WARN or ERROR (default, if not defined).
+            </para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option><replaceable>GLITE_SSSS_LOG_FILE</replaceable></option></term>
+            <listitem><para>
+                Specifies the file, where messages are printed.
+                Defaults to stdout, if not defined.
+            </para></listitem>
+        </varlistentry>
+    </variablelist>							    	
+
+</refsect1>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+       	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY common-ssss-args SYSTEM "common-ssss-args.xml">
+<!ENTITY common-ssss-arg-desc SYSTEM "common-ssss-arg-desc.xml">
+<!ENTITY common-ssss-env SYSTEM "common-ssss-env.xml">
+]>
+
+<refentry id="glite-ssss-join-passwd.1" revision="$Revision: 1.1 $">
+
+<refentryinfo>
+    <!-- These information are shown on the manpage -->
+    <author>
+	<firstname>Akos</firstname>
+	<surname>Frohner</surname>
+    </author>
+    <author>
+	<firstname>Trygve</firstname>
+	<surname>Aspelien</surname>
+    </author>
+    <date>August 2006</date>
+    <productname>gLite</productname>
+    <title>gLite Security</title>
+
+    <!-- These information are not shown -->
+    <copyright>
+	<year>2006</year>
+	<holder>Members of the EGEE Collaboration</holder>
+    </copyright>
+</refentryinfo>
+
+<refmeta>
+    <refentrytitle>glite-ssss-join-passwd</refentrytitle>
+    <manvolnum>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+    <refname>glite-ssss-join-passwd</refname>
+    <refpurpose>
+        Re-constructs an ascii password from hex parts produced by glite-ssss-split-passwd.
+    </refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <cmdsynopsis>
+	<command>glite-ssss-join-passwd</command>
+
+&common-ssss-args;
+
+        <arg rep="repeat" choice="plain"><option><replaceable>PASSWD_PART</replaceable></option></arg>
+
+    </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+    <title>DESCRIPTION</title>
+    <para>
+	<command>glite-ssss-join-passwd</command> is a command-line tool to
+        re-constuct an ascii  password from hex parts produced by glite-ssss-split-passwd.
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>OPTIONS</title>
+    <variablelist>
+
+&common-ssss-arg-desc;
+
+        <varlistentry>
+            <term><option><replaceable>PASSWD_PART</replaceable></option></term>
+            <listitem><para>
+                A password part as a hex string, or 'NULL' if the part is 
+                not available. The password parts have to be specified in the 
+                same order and number as they were produced, marking missing
+                ones with 'NULL'.
+            </para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+</refsect1>
+
+&common-ssss-env;
+
+<refsect1>
+    <title>SEE ALSO</title>
+
+    <para>
+	<citerefentry>
+	    <refentrytitle>glite-ssss-join-passwd</refentrytitle>
+	    <manvolnum>1</manvolnum>
+	</citerefentry>
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>EXAMPLES</title>
+    <variablelist>
+	<varlistentry>
+        <term><userinput>glite-ssss-join-passwd 8190b6ea2758da88d522 03274abe284449c750df 84afde832930b8f7cc8d 064672572a1c2836484a 87ce062b2b089766c3f8 </userinput></term>
+	    <para>
+            Joins the key parts, which were produced by 
+	        <userinput>glite-ssss-split-passwd 5 2 &#34;#%&#38;lkXYt&#34;</userinput>
+	    </para>
+	</varlistentry>
+	<varlistentry>
+        <term><userinput>glite-ssss-join-passwd 8190b6ea2758da88d522 NULL 84afde832930b8f7cc8d NULL 87ce062b2b089766c3f8 </userinput></term>
+	    <para>
+            Re-constructing the same key, but with the second and fourth
+            key parts are missing.
+	    </para>
+	</varlistentry>
+    </variablelist>
+</refsect1>
+
+</refentry>
+<!-- vim: set ai sw=4: -->

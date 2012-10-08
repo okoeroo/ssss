@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+       	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY common-ssss-args SYSTEM "common-ssss-args.xml">
+<!ENTITY common-ssss-arg-desc SYSTEM "common-ssss-arg-desc.xml">
+<!ENTITY common-ssss-env SYSTEM "common-ssss-env.xml">
+]>
+
+<refentry id="glite-ssss-join-key.1" revision="$Revision: 1.2 $">
+
+<refentryinfo>
+    <!-- These information are shown on the manpage -->
+    <author>
+	<firstname>Akos</firstname>
+	<surname>Frohner</surname>
+    </author>
+    <author>
+	<firstname>Trygve</firstname>
+	<surname>Aspelien</surname>
+    </author>
+    <date>August 2006</date>
+    <productname>gLite</productname>
+    <title>gLite Security</title>
+
+    <!-- These information are not shown -->
+    <copyright>
+	<year>2006</year>
+	<holder>Members of the EGEE Collaboration</holder>
+    </copyright>
+</refentryinfo>
+
+<refmeta>
+    <refentrytitle>glite-ssss-join-key</refentrytitle>
+    <manvolnum>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+    <refname>glite-ssss-join-key</refname>
+    <refpurpose>
+        Re-constructs a key from parts produced by glite-ssss-split-key.
+    </refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <cmdsynopsis>
+	<command>glite-ssss-join-key</command>
+
+&common-ssss-args;
+
+        <arg rep="repeat" choice="plain"><option><replaceable>KEY_PART</replaceable></option></arg>
+
+    </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+    <title>DESCRIPTION</title>
+    <para>
+	<command>glite-ssss-join-key</command> is a command-line tool to
+        re-constuct a key from parts produced by glite-ssss-split-key.
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>OPTIONS</title>
+    <variablelist>
+
+&common-ssss-arg-desc;
+
+        <varlistentry>
+            <term><option><replaceable>KEY_PART</replaceable></option></term>
+            <listitem><para>
+                A key part as hexadecimal number, or 'NULL' if the part is 
+                not available. The key parts have to be specified in the 
+                same order and number as they were produced, marking missing
+                ones with 'NULL'.
+            </para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+</refsect1>
+
+&common-ssss-env;
+
+<refsect1>
+    <title>SEE ALSO</title>
+
+    <para>
+	<citerefentry>
+	    <refentrytitle>glite-ssss-join-key</refentrytitle>
+	    <manvolnum>1</manvolnum>
+	</citerefentry>
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>EXAMPLES</title>
+    <variablelist>
+	<varlistentry>
+        <term><userinput>glite-ssss-join-key c86a47f4 7eaf3970 34f42aec eb2a1c68 a16f0de4 </userinput></term>
+	    <para>
+            Joins the key parts, which were produced by 
+	        <userinput>glite-ssss-split-key 5 2 12345678</userinput>
+	    </para>
+	</varlistentry>
+	<varlistentry>
+        <term><userinput>glite-ssss-join-key c86a47f4 NULL 34f42aec NULL a16f0de4 </userinput></term>
+	    <para>
+            Re-constructing the same key, but with the second and fourth
+            key parts are missing.
+	    </para>
+	</varlistentry>
+    </variablelist>
+</refsect1>
+
+</refentry>
+<!-- vim: set ai sw=4: -->

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+       	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY common-ssss-args SYSTEM "common-ssss-args.xml">
+<!ENTITY common-ssss-arg-desc SYSTEM "common-ssss-arg-desc.xml">
+<!ENTITY common-ssss-env SYSTEM "common-ssss-env.xml">
+]>
+
+<refentry id="glite-ssss-split-passwd.1" revision="$Revision: 1.1 $">
+
+<refentryinfo>
+    <!-- These information are shown on the manpage -->
+    <author>
+	<firstname>Akos</firstname>
+	<surname>Frohner</surname>
+    </author>
+    <author>
+	<firstname>Trygve</firstname>
+	<surname>Aspelien</surname>
+    </author>
+    <date>August 2006</date>
+    <productname>gLite</productname>
+    <title>gLite Security</title>
+
+    <!-- These information are not shown -->
+    <copyright>
+	<year>2006</year>
+	<holder>Members of the EGEE Collaboration</holder>
+    </copyright>
+</refentryinfo>
+
+<refmeta>
+    <refentrytitle>glite-ssss-split-passwd</refentrytitle>
+    <manvolnum>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+    <refname>glite-ssss-split-passwd</refname>
+    <refpurpose>
+        Splits a password into shares to be distributed among untrusted parties.
+    </refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <cmdsynopsis>
+	<command>glite-ssss-split-passwd</command>
+
+&common-ssss-args;
+
+        <arg choice="plain"><option><replaceable>SHARES</replaceable></option></arg>
+        <arg choice="plain"><option><replaceable>NEEDED</replaceable></option></arg>
+        <arg choice="plain"><option><replaceable>PASSWORD</replaceable></option></arg>
+
+    </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+    <title>DESCRIPTION</title>
+    <para>
+	<command>glite-ssss-split-passwd</command> is a command-line tool to
+        split an ascii password into a number of shares using Shamir's Secret Sharing
+        Scheme (see "How to Share a Secret", by Adi Shamir, Communications of
+        the ACM, November, 1979, Volume 22, Number 11, page 612.).
+    </para>
+    <para>
+        The ascii password is split into <emphasis>SHARES</emphasis> number of random hex parts
+        of which <emphasis>NEEDED</emphasis> number of parts are needed to
+        re-construct the password. The re-construction of the password is theoretically
+        not possible of parts fewer than <emphasis>NEEDED</emphasis>, thus
+        it enables the safe storage of password parts on not fully trusted 
+        password storages.
+    </para>
+    <para>
+        The scheme also provides some reliability, since not all parts of 
+        the split password are needed to re-construct the original password.
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>OPTIONS</title>
+    <variablelist>
+
+&common-ssss-arg-desc;
+
+        <varlistentry>
+            <term><option><replaceable>SHARES</replaceable></option></term>
+            <listitem><para>
+                The number of parts to split the password into. 
+            </para></listitem>
+        </varlistentry>
+
+        <varlistentry>
+            <term><option><replaceable>NEEDED</replaceable></option></term>
+            <listitem><para>
+                The number of split password parts needed to re-construct the password.
+                Shall be less than <emphasis>SHARES</emphasis>.
+            </para></listitem>
+        </varlistentry>
+
+        <varlistentry>
+            <term><option><replaceable>PASSWORD</replaceable></option></term>
+            <listitem><para>
+                The password to split as an ascii string.
+            </para></listitem>
+        </varlistentry>
+    </variablelist>
+</refsect1>
+
+&common-ssss-env;
+
+<refsect1>
+    <title>SEE ALSO</title>
+
+    <para>
+	<citerefentry>
+	    <refentrytitle>glite-ssss-join-passwd</refentrytitle>
+	    <manvolnum>1</manvolnum>
+	</citerefentry>
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>EXAMPLES</title>
+    <variablelist>
+	<varlistentry>
+	    <term><userinput>glite-ssss-split-passwd 5 2 &#34;#%&#38;lkXYt&#34;</userinput></term>
+	    <para>
+            Splits the password into 5 parts, of which 2 are needed to get it back. The &#34;  
+            marks or similar are needed in a shell to compress shell variables.
+	    </para>
+	</varlistentry>
+	<varlistentry>
+	    <term><userinput>glite-ssss-split-passwd 7 3 &#34;?&#38;\&#62;+asdffgew&#34;</userinput></term>
+	    <para>
+            Splits the password into 7 parts, of which 3 are needed to get it back. The &#34;  
+            marks or similar are needed in a shell to compress shell variables.
+	    </para>
+	</varlistentry>
+    </variablelist>
+</refsect1>
+
+</refentry>
+<!-- vim: set ai sw=4: -->

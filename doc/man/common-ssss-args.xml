@@ -1,0 +1,9 @@
+	<group>
+	    <arg choice="plain"><option>-h</option></arg>
+	</group>
+	<group>
+	    <arg choice="plain"><option>-q</option></arg>
+	</group>
+	<group>
+	    <arg choice="plain"><option>-V</option></arg>
+	</group>

@@ -1,0 +1,16 @@
+*** Release glite-security-ssss_R_1_0_0_3 2008-06-25
+
+    o New build to clean rpath.
+
+*** Release glite-security-ssss_R_1_0_0_2 2008-02-06
+
+    o Do not let ETICS to handle anything related to RPM dependencies.
+
+*** Release glite-security-ssss_R_1_0_0_1 2008-02-05
+
+    o Proper 1.0 release
+    o memory allocation fix in the library
+
+*** Release glite-security-ssss_R_0_1_0 2006-08-04
+
+	First release.

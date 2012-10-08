@@ -1,0 +1,22 @@
+\documentclass[a4paper]{egee}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{times}
+\usepackage{doxygen}
+\makeindex
+\setcounter{tocdepth}{1}
+\title{@BUILD.TITLE@}
+\author{EGEE}
+\DocIdentifier{@BUILD.MODULE@-@BUILD.VERSION@-@BUILD.RELEASE@}
+\EDMSid{...}
+\Partner{CERN}
+\LeadPartner{CERN}
+\DocStatus{WORKING DRAFT}
+\Subtitle{API Documentation} 
+\Dissemination{PUBLIC}
+\Abstract{@BUILD.DESCRIPTION@}
+\begin{document}

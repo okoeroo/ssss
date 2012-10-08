@@ -1,0 +1,2 @@
+This package provides a library to share a secret among partially
+trusted parties using Shamir's Secret Sharing Scheme.

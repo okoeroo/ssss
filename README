@@ -1,0 +1,27 @@
+     _______.     _______.     _______.     _______.
+    /       |    /       |    /       |    /       |
+   |   (----`   |   (----`   |   (----`   |   (----`
+    \   \        \   \        \   \        \   \    
+.----)   |   .----)   |   .----)   |   .----)   |   
+|_______/    |_______/    |_______/    |_______/    
+                                                    
+ Shamir's      Secret       Sharing      Service
+
+====================================================
+
+Maintainer: Oscar Koeroo <okoeroo@gmail.com>
+
+This is a fork of the glite-security-ssss code at tag (version) 1.0.1
+
+Original repository:
+cvs -d :pserver:anonymous@glite.cvs.cern.ch:/cvs/glite co -d ssss org.glite.security.ssss
+
+
+Motivation:
+I've talked about this code many times in several fora. I'd like to help people
+make easy use of Shamir's Secret Sharing algorithm by porting it, cleaning it
+up and push it to several repos.
+
+
+More info: http://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
+

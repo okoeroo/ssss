@@ -1,5 +1,9 @@
 #!/bin/sh
 
+####
+#   This file is edited to remove the gLite specific build requirements by Oscar Koeroo
+####
+
 
 ###################################################################
 # Copyright (c) Members of the EGEE Collaboration. 2004. See
@@ -29,7 +33,13 @@ echo "AC_DEFUN([GLITE_MODULE_VERSION],[$version])" > project/module-version.m4
 mkdir -p src/autogen
 set -x
 aclocal -I project
-libtoolize --force
+which libtoolize > /dev/null 2>&1
+RC=$?
+if [ ${RC} -eq 1 ]; then
+    glibtoolize --force
+else
+    libtoolize --force
+fi
 autoheader
 automake --foreign --add-missing --copy
 autoconf

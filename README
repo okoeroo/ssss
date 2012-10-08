@@ -18,10 +18,15 @@ cvs -d :pserver:anonymous@glite.cvs.cern.ch:/cvs/glite co -d ssss org.glite.secu
 
 
 Motivation:
-I've talked about this code many times in several fora. I'd like to help people
+I've talked about this code many times in several fora since I helped the original developer started on the first implementation. I'd like to help people
 make easy use of Shamir's Secret Sharing algorithm by porting it, cleaning it
 up and push it to several repos.
 
 
 More info: http://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
 
+
+Dependencies:
+OpenSSL
+xsltproc (for the man pages)
+Doxygen (for the apidoc)

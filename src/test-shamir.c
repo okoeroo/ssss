@@ -15,17 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Testprogram for Shamir secret sharing scheme 
+ * Testprogram for Shamir secret sharing scheme
  *      (splitting and joining for all shares)
  * Usage: ./test-shamir nShares nNeeded key
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *
  * $Id: test-shamir.c,v 1.7 2010/03/31 13:00:31 hahkala Exp $
  */
 
-#include <glite/security/ssss.h>
+#include <ssss.h>
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
@@ -69,7 +69,7 @@ int main(int argc, char** argv){
   for(i=0;i<nShares;i++){
     printf("\nx = %i splitKey = %s",i+1,keys[i]);
   }
-  
+
   // Join keys
   jKey = glite_security_ssss_join_keys(keys, nShares);
   if(jKey==NULL){
@@ -86,7 +86,7 @@ int main(int argc, char** argv){
     printf("ERROR: the original and the joined key are not the same!\n");
   }
   return i;
-  
+
 }
 
 /* vim:set sw=2 ts=2 et si: */

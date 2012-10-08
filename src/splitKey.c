@@ -18,7 +18,7 @@
  * Testprogram for Shamir secret sharing scheme (splitting for all shares)
  * Usage:  ./splitKey nShares nNeeded key
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *
  * $Id: splitKey.c,v 1.8 2010/03/31 13:00:31 hahkala Exp $
@@ -28,7 +28,7 @@
 #include <config.h>
 #endif
 
-#include <glite/security/ssss.h>
+#include <ssss.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -44,7 +44,7 @@ static void print_usage_and_die (int exit_code) {
   printf("%s 5 2 1234567812345678\n", PROGNAME);
   printf("7 split keys, 3 are needed to unlock.\n");
   printf("%s 7 3 12345678\n", PROGNAME);
-  exit(exit_code); 
+  exit(exit_code);
 }
 
 int main(int argc, char** argv){
@@ -52,7 +52,7 @@ int main(int argc, char** argv){
   unsigned int nShares;
   unsigned int i;
   int flag;
-  int verbose = 1;    
+  int verbose = 1;
   unsigned char *key;
   unsigned char ** keys;
 
@@ -81,10 +81,10 @@ int main(int argc, char** argv){
   nShares = (unsigned int) atoi(argv[optind + 0]);
   nNeeded = (unsigned int) atoi(argv[optind + 1]);
   key = argv[optind + 2];
-  
+
   if (verbose) printf("\nKey to split (%d of %d): %s", nNeeded, nShares, key);
 
-  // Split keys 
+  // Split keys
   keys = glite_security_ssss_split_key(key,nShares,nNeeded);
   if(keys==NULL){
     printf("\n\nError in splitting key. Check logfile");

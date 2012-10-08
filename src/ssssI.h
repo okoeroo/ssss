@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *      Akos Frohner <Akos.Frohner@cern.ch>
  */
@@ -24,7 +24,7 @@
 
 /* Internal header file for SSSS */
 
-#include "glite/security/ssss.h"
+#include "ssss.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,8 +51,8 @@ unsigned char *hex2ascii(unsigned char *hexKey);
 /* Name of the environment variable holding the log filename. */
 #define SSSSEnv_LOG_FILE       "GLITE_SSSS_LOG_FILE"
 
-/** 
- * The SSSS_I_log4c_init() function initializes the common logging 
+/**
+ * The SSSS_I_log4c_init() function initializes the common logging
  * facility for service discovery plugins.
  *
  * SSSS_LOG_LEVEL environmental variable sets the log level,
@@ -87,7 +87,7 @@ typedef enum {
  */
 extern int SSSS_I_log4c_check_loglevel(SSSS_I_log4c_LogLevel loglevel);
 
-extern void SSSS_I_log4c_printf(SSSS_I_log4c_LogLevel loglevel, 
+extern void SSSS_I_log4c_printf(SSSS_I_log4c_LogLevel loglevel,
     const char *file, const char *function, const int line,
     const char *format, ...);
 

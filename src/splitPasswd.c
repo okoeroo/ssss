@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Testprogram for Shamir secret sharing scheme 
+ * Testprogram for Shamir secret sharing scheme
  * (splitting of an ascii password)
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *
  * $Id: splitPasswd.c,v 1.3 2010/03/31 13:00:31 hahkala Exp $
@@ -28,7 +28,7 @@
 #include <config.h>
 #endif
 
-#include <glite/security/ssss.h>
+#include <ssss.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -44,7 +44,7 @@ static void print_usage_and_die (int exit_code) {
   printf("%s 5 2 \"#%&lkXYt\"\n", PROGNAME);
   printf("7 split paswords, 3 are needed to find original password.\n");
   printf("%s 7 3 \"#%&lkXYt\"\n", PROGNAME);
-  exit(exit_code); 
+  exit(exit_code);
 }
 
 int main(int argc, char** argv){
@@ -52,7 +52,7 @@ int main(int argc, char** argv){
   unsigned int nShares;
   unsigned int i;
   int flag;
-  int verbose = 1;    
+  int verbose = 1;
   unsigned char *key;
   unsigned char ** keys;
 
@@ -77,10 +77,10 @@ int main(int argc, char** argv){
   nShares = (unsigned int) atoi(argv[optind + 0]);
   nNeeded = (unsigned int) atoi(argv[optind + 1]);
   key = argv[optind + 2];
-  
+
   if (verbose) printf("\nPassword to split (%d of %d): %s", nNeeded, nShares, key);
 
-  // Split keys 
+  // Split keys
   keys = glite_security_ssss_split_passwd(key,nShares,nNeeded);
   if(keys==NULL){
     printf("\n\nError in splitting password. Check logfile");

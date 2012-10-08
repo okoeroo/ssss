@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Testprogram for Shamir secret sharing scheme 
+ * Testprogram for Shamir secret sharing scheme
  * (joining for given split password parts (NULL for not known keys))
  *
- * Authors: 
+ * Authors:
  *      Trygve Aspelien <trygve.aspelien@bccs.uib.no>
  *
  * $Id: joinPasswd.c,v 1.3 2010/03/31 13:00:31 hahkala Exp $
@@ -28,7 +28,7 @@
 #include <config.h>
 #endif
 
-#include <glite/security/ssss.h>
+#include <ssss.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -46,14 +46,14 @@ static void print_usage_and_die (int exit_code) {
     printf("%s 8190b6ea2758da88d522 03274abe284449c750df 84afde832930b8f7cc8d 064672572a1c2836484a 87ce062b2b089766c3f8\n", PROGNAME);
     printf("Need two parts to recover the password and have split part 2 and 4\n");
     printf("%s NULL 03274abe284449c750df NULL 064672572a1c2836484a\n", PROGNAME);
-  exit(exit_code); 
+  exit(exit_code);
 }
 
 int main(int argc, char** argv){
   unsigned int nShares=0;
   int flag;
   unsigned int i;
-  int verbose = 1;    
+  int verbose = 1;
   unsigned char *jKey;
   unsigned char ** keys;
 
@@ -74,7 +74,7 @@ int main(int argc, char** argv){
   if(argc < (optind + 2)){
     print_usage_and_die(EXIT_FAILURE);
   }
- 
+
   nShares = (unsigned int) argc - optind;
 
   // Allocate splitkeys
@@ -88,7 +88,7 @@ int main(int argc, char** argv){
       keys[i] = argv[i + optind];
     }
   }
-      
+
   // Join keys
   jKey = glite_security_ssss_join_passwd(keys, nShares);
   if(jKey==NULL){

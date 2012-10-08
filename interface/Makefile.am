@@ -11,6 +11,6 @@
 
 
 nobase_include_HEADERS =  \
-	glite/security/ssss.h
+	ssss.h
 
 MAINTAINERCLEANFILES = Makefile.in

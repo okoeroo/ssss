@@ -15,14 +15,14 @@ That's nice, but what is it?
 This is a fork of the glite-security-ssss code at tag (version) 1.0.1
  -> http://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
 
-
 Maintainer:
 Oscar Koeroo <okoeroo@gmail.com>
 
+Wiki (with Howto):
+https://github.com/okoeroo/ssss/wiki
 
 Original repository:
 cvs -d :pserver:anonymous@glite.cvs.cern.ch:/cvs/glite co -d ssss org.glite.security.ssss
-
 
 Products / tools:
 - ssss-generate-key
@@ -33,13 +33,11 @@ Products / tools:
 - ssss.h
 - libssss.dylib
 
-
 Motivation:
 I've talked about this code many times in several fora since I helped the
 original developer started on the first implementation. I'd like to help people
 make easy use of Shamir's Secret Sharing algorithm by porting it, cleaning it
 up and push it to several repos.
-
 
 Current state:
 - Messy code and error messages (signed errors)
@@ -48,14 +46,11 @@ Current state:
 - The gLite-isms need to go. I'll add an explicitly NOTES file to explain the
   origin.
 
-
 Build guide:
 sh bootstrap && ./configure && make && make install
-
 
 Dependencies:
 OpenSSL
 xsltproc (for the man pages)
 Doxygen (for the apidoc)
-
 

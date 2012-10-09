@@ -13,22 +13,14 @@
 ACLOCAL_AMFLAGS = -I project
 
 SUBDIRS	= src interface
+#SUBDIRS	= src interface doc
 
 docdir = $(datadir)/doc/$(PACKAGE)
 dist_doc_DATA = RELEASE-NOTES LICENSE
 
 stage: install
 
-distsrc: dist
-	mv $(distdir).tar.gz $(DISTTAR)/$(distdir)_src.tar.gz
-
-distbin: all
-	mkdir -p $(top_builddir)/dist_bin/$(prefix)
-	$(MAKE) $(AM_MAKEFLAGS) install DESTDIR=`cd $(top_builddir); pwd`/dist_bin
-	(cd $(top_builddir)/dist_bin/$(prefix); $(AMTAR) -zcf $(DISTTAR)/$(distdir)_bin.tar.gz .)
-	rm  -rf $(top_builddir)/dist_bin
-
-.PHONY: stage distsrc distbin
+.PHONY: stage
 
 AUTOMAKE_OPTIONS = foreign
 

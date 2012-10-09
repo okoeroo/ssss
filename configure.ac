@@ -89,10 +89,15 @@ AM_CONFIG_HEADER([src/autogen/config.h])
 AC_CONFIG_FILES([\
 	Makefile \
 	src/Makefile \
-    interface/Makefile \
-    doc/Makefile \
-    doc/apidoc/Makefile \
-    doc/man/Makefile
+    interface/Makefile
 ])
+#AC_CONFIG_FILES([\
+#	Makefile \
+#	src/Makefile \
+#    interface/Makefile \
+#    doc/Makefile \
+#    doc/apidoc/Makefile \
+#    doc/man/Makefile
+#])
 
 AC_OUTPUT

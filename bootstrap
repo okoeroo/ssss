@@ -36,10 +36,10 @@ aclocal -I project
 which libtoolize > /dev/null 2>&1
 RC=$?
 if [ ${RC} -eq 1 ]; then
-    glibtoolize --force
+    glibtoolize --force --copy
 else
-    libtoolize --force
+    libtoolize --force --copy
 fi
 autoheader
-automake --foreign --add-missing --copy
+automake --add-missing --copy
 autoconf

@@ -11,14 +11,14 @@
 # Release: $Name:  $
 
 
-CPPFLAGS = -I$(top_srcdir)/interface $(GLITE_CFLAGS)
+CFLAGS = -I$(top_srcdir)/interface -I$(top_srcdir)/src
 LDFLAGS = -L/opt/local/lib
 
 MAINTAINERCLEAN = Makefile.in
 
 lib_LTLIBRARIES = libssss.la 
 
-libssss_la_SOURCES = shamir.c shamir-funcs.c log4c.c
+libssss_la_SOURCES = ssssI.h shamir.c shamir-funcs.c log4c.c
 
 libssss_la_LIBADD = \
 	-L/opt/local/lib -lm -lcrypto
@@ -56,10 +56,12 @@ test_shamir_LDADD = libssss.la
 test_shamir_ascii_SOURCES = test-shamir-ascii.c
 test_shamir_ascii_LDADD = libssss.la
 
-noinst_SCRIPTS = \
+#noinst_SCRIPTS = \
+bin_SCRIPTS = \
           test-shamir.sh \
           test-shamir-ascii.sh
-TESTS = \
-    test-shamir.sh \
-    test-shamir-ascii.sh
+
+#TESTS = \
+#    test-shamir.sh \
+#    test-shamir-ascii.sh
 

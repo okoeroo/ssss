@@ -11,10 +11,9 @@
 #  Release: $Name:  $
 # 
 #
-
 AC_PREREQ(2.57)
-AC_INIT([SSSS], [1.0.1])
-AC_CONFIG_AUX_DIR([./project])
+AC_INIT([ssss], [1.0.1])
+AC_CONFIG_MACRO_DIR([project])
 AM_INIT_AUTOMAKE([1.6.3 subdir-objects foreign])
 AC_CONFIG_SRCDIR([src/Makefile.am])
 
@@ -37,6 +36,8 @@ AC_PROG_LIBTOOL
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
+
+LT_INIT
 
 # Turn on warnings
 if test "$ac_cv_c_compiler_gnu" = yes; then

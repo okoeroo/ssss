@@ -2,6 +2,9 @@
 
 ####
 #   This file is edited to remove the gLite specific build requirements by Oscar Koeroo
+#
+# Log:
+#   Applied Ryan's hint listed here: https://github.com/okoeroo/ssss/issues/2
 ####
 
 
@@ -24,22 +27,16 @@
 ###################################################################
 
 
-
-# Unfortunately the localinit target runs _after_ the init-autotools target,
-# so we cannot do this from ant
-#version=`grep ^module.version project/version.properties | cut -d= -f2 | sed -e 's/[         ]//g'`
-#echo "AC_DEFUN([GLITE_MODULE_VERSION],[$version])" > project/module-version.m4
-
 mkdir -p src/autogen
 set -x
 aclocal -I project
-which libtoolize > /dev/null 2>&1
-RC=$?
-if [ ${RC} -eq 1 ]; then
+
+if [ ! -x "$(which libtoolize 2>/dev/null)" ]; then
     glibtoolize --force --copy
 else
     libtoolize --force --copy
 fi
+
 autoheader
 automake --add-missing --copy
 autoconf

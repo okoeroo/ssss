@@ -32,9 +32,9 @@ set -x
 aclocal -I project
 
 if [ ! -x "$(which libtoolize 2>/dev/null)" ]; then
-glibtoolize --force --copy
+    glibtoolize --force --copy
 else
-libtoolize --force --copy
+    libtoolize --force --copy
 fi
 
 autoheader
